@@ -5,10 +5,10 @@
 
 inline void std_benchmark_depend(DVector &vec1, DVector &vec2, DVector &vec3) {
     auto clocks_total = 0;
-    register int raw_v1 asm("%ah") = 0;
-    register int raw_v2 asm("%al") = 0;
-    register double res_1 asm("%dx") = 0;
-    register double res_2 asm("%dl") = 0;
+    register int raw_v1 asm("%eax") = 0;
+    register int raw_v2 asm("%ebx") = 0;
+    register double res_1 asm("%ecx") = 0;
+    register double res_2 asm("%edx") = 0;
 
     for (std::size_t i = 0; i < vec1.Size(); ++i) {
         raw_v1 = vec1.GetRawBlock(i);
@@ -26,10 +26,10 @@ inline void std_benchmark_depend(DVector &vec1, DVector &vec2, DVector &vec3) {
 
 inline uint64_t std_benchmark_independ(DVector &vec1, DVector &vec2) {
     if (vec1.Size() == 0) return 0;
-    register int raw_v1 asm("%ah") = 0;
-    register int raw_v2 asm("%al") = 0;
-    register double res_1 asm("%dx") = 0;
-    register double res_2 asm("%dl") = 0;
+    register int raw_v1 asm("%eax") = 0;
+    register int raw_v2 asm("%ebx") = 0;
+    register double res_1 asm("%ecx") = 0;
+    register double res_2 asm("%edx") = 0;
     auto result = 0;
     for (std::size_t i = 0; i < vec1.Size(); ++i) {
         raw_v1 = vec1.GetRawBlock(i);
@@ -45,10 +45,10 @@ inline uint64_t std_benchmark_independ(DVector &vec1, DVector &vec2) {
 
 inline void default_benchmark(DVector &vec1, DVector &vec2) {
     std::chrono::nanoseconds timer{0};
-    register int raw_v1 asm("%ah") = 0;
-    register int raw_v2 asm("%al") = 0;
-    register double res_1 asm("%dx") = 0;
-    register double res_2 asm("%dl") = 0;
+    register int raw_v1 asm("%eax") = 0;
+    register int raw_v2 asm("%ebx") = 0;
+    register double res_1 asm("%ecx") = 0;
+    register double res_2 asm("%edx") = 0;
 
     for (std::size_t i = 0; i < vec1.Size(); ++i) {
         raw_v1 = vec1[i];
